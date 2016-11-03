@@ -1,0 +1,25 @@
+<resources>
+    <string name="place_holder">%s</string>
+    <string name="app_name">待办管家</string>
+    <string name="help_content">待办小管家</string>
+    <string name="app_ver">当前版本%s</string>
+    <string name="setting">设置</string>
+    <string name="help">帮助</string>
+    <string name="about">关于</string>
+    <string name="logout">退出</string>
+    <string name="tv_real_time_data">温:%1$s℃,湿:%2$s％,环:%3$s℃</string>
+    <string name="title_bar">顶部导航</string>
+    <string name="clock">番茄钟</string>
+    <string name="todo">待办事项列表</string>
+    <string name="todo_tab">todo</string>
+    <string name="more">更多</string>
+    <string name="startClock">开始计时</string>
+    <string name="stopClock">停止计时</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="clock_period">番茄钟周期：</string>
+    <string name="enter_clock_period">请输入番茄钟周期</string>
+    <string name="min">分钟</string>
+    <string name="clock_finished">番茄钟已完成！</string>
+    <string name="add_todo">添加待办事项...</string>
+</resources>

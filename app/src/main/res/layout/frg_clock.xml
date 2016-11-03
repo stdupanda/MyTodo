@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_weight="16"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="0dp">
+        <cn.xz.mytodo.view.CircleProgressView
+            android:id="@+id/mCircleProgressView"
+            android:layout_centerInParent="false"
+            android:layout_width="130dp"
+            android:layout_height="130dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="0dp">
+        <TextView
+            android:background="@drawable/selector_tv_clock"
+            android:id="@+id/tvSwitch"
+            android:gravity="center"
+            android:layout_height="50dp"
+            android:text="@string/startClock"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,51 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="tab_menu_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@drawable/selector_text_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="tv_more">
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/selector_tv_more</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="MyCheckBox16" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_cb16</item>
+        <item name="android:paddingLeft">20dip</item>
+        <item name="android:maxHeight">10.0dip</item>
+    </style>
+
+    <style name="MyCheckBox32" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_cb32</item>
+        <item name="android:paddingLeft">35dip</item>
+    </style>
+
+    <style name="MyCheckBoxStar32" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_cb_star32</item>
+        <item name="android:paddingLeft">35dip</item>
+    </style>
+</resources>
