@@ -1,9 +1,11 @@
 package cn.xz.mytodo.fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Process;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,10 +18,19 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.xz.mytodo.R;
 import cn.xz.mytodo.common.IConst;
+import cn.xz.mytodo.util.MDate;
 import cn.xz.mytodo.util.MLog;
 import cn.xz.mytodo.util.MToast;
 import cn.xz.mytodo.util.MVersion;
@@ -31,6 +42,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
     @BindView(R.id.tv_frg_more_about)
     TextView tvAbout;
+    @BindView(R.id.tv_frg_more_exp)
+    TextView tvExp;
     @BindView(R.id.tv_frg_more_setting)
     TextView tvSetting;
     @BindView(R.id.tv_frg_more_help)
@@ -52,6 +65,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
 
         tvAbout.setOnClickListener(this);
+        tvExp.setOnClickListener(this);
         tvSetting.setOnClickListener(this);
         tvHelp.setOnClickListener(this);
         tvExit.setOnClickListener(this);
@@ -76,6 +90,10 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 showSettingDialog();
                 break;
             }
+            case R.id.tv_frg_more_exp: {
+                showExpDialog();
+                break;
+            }
             case R.id.tv_frg_more_help: {
                 showHelpDialog();
                 break;
@@ -86,6 +104,38 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
+    private void showExpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog dialog = builder.setTitle("导出数据？")
+                .setMessage("确定导出数据吗？待办数据将会导出到外置存储根路径下。")
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String dbFilePath = getActivity().getDatabasePath("todo.db").getAbsolutePath();
+                        String sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                        String suffix = "/todo_db_"
+                                + MDate.getDate().replaceAll("-", "")
+                                .replaceAll(":", "").replace(" ", "") + ".db";
+                        if (!new File(dbFilePath).exists()) {
+                            MToast.Show(getActivity(), "db文件路径错误！");
+                            return;
+                        }
+                        MLog.log(sdcardPath + suffix);
+                        boolean ret = copyFile(dbFilePath, sdcardPath + suffix);
+                        if (ret) {
+                            MToast.Show(getActivity(), "导出数据成功！");
+                        } else {
+                            MToast.Show(getActivity(), "导出数据失败！");
+                        }
+                    }
+                })
+                .setCancelable(true)
+                .show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                .setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
+    }
 
     private void showAboutDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -166,5 +216,33 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         System.exit(0);
+    }
+
+    public boolean copyFile(String source, String dest) {
+        try {
+            File fileSrc = new File(source);
+            File fileDest = new File(dest);
+            InputStream in = new FileInputStream(fileSrc);
+
+            OutputStream out = new FileOutputStream(fileDest);
+
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+
+            in.close();
+            out.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+
     }
 }

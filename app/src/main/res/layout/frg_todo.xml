@@ -11,26 +11,45 @@
         android:layout_marginRight="10dp"
         android:layout_height="45dp">
 
+        <!--
         <EditText
             android:id="@+id/et_add"
             android:imeOptions="actionDone"
+            android:imeActionLabel="@string/add_title_ok"
             android:background="@null"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:inputType="none"
             android:maxLines="1"
             android:drawableLeft="@drawable/plus32"
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:hint="@string/add_todo" />
-
+-->
+        <TextView
+            android:id="@+id/et_add"
+            android:background="@drawable/selector_tv_add_todo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:drawableLeft="@drawable/plus32"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"
+            android:hint="@string/add_todo" />
         <CheckBox
             style="@style/MyCheckBoxStar32"
             android:layout_gravity="center_vertical"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_weight="0" />
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btn_test"
+            android:text="@string/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -42,8 +61,7 @@
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fastScrollEnabled="true"
-            android:scrollIndicators="right"></ListView>
+            android:fastScrollEnabled="true"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

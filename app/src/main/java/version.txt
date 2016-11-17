@@ -1,0 +1,7 @@
+>2016-11-17版本
+Version Name:1.1
+Version Code:2
+待办支持新增、长按编辑、删除；
+更多界面增加导出待办列表的db文件到外置存储根路径，名字格式为todo_db_yyyyMMddHHmmss.db
+
+>下次版本

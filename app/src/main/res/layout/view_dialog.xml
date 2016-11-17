@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/tv_dialog_edit"
+        android:background="@drawable/selector_tv_add_todo"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:text="@string/todo_edit"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:background="@color/flat_clouds"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+    <TextView
+        android:clickable="true"
+        android:id="@+id/tv_dialog_del"
+        android:background="@drawable/selector_tv_add_todo"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:text="@string/todo_delete"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

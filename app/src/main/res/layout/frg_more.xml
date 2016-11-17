@@ -13,6 +13,14 @@
         android:drawableRight="@drawable/icon_arrow"
         android:text="@string/setting" />
     <TextView
+        android:id="@+id/tv_frg_more_exp"
+        style="@style/tv_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/export"
+        android:drawableRight="@drawable/icon_arrow"
+        android:text="@string/export_data" />
+    <TextView
         android:id="@+id/tv_frg_more_help"
         style="@style/tv_more"
         android:layout_width="match_parent"

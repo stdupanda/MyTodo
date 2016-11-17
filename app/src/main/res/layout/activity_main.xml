@@ -52,7 +52,7 @@
     <View
         android:id="@+id/div_tab_bar"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="2dp"
         android:layout_above="@id/radio_group"
         android:background="@color/white" />
 

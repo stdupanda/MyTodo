@@ -7,6 +7,7 @@ import java.util.Date;
 /**
  * Created by gsx on 2016/10/26.
  */
+
 /**
  * http://satyan.github.io/sugar/getting-started.html
  * todo实体类
@@ -14,7 +15,20 @@ import java.util.Date;
  */
 public class Todo extends SugarRecord {
 
-    public Todo(){
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "ifDone=" + ifDone +
+                ", ifStar=" + ifStar +
+                ", title='" + title + '\'' +
+                ", desc='" + desc + '\'' +
+                ", addDate=" + addDate +
+                ", isButton=" + isButton +
+                ", isDel=" + isDel +
+                '}';
+    }
+
+    public Todo() {
         //
     }
     /**
@@ -26,6 +40,10 @@ public class Todo extends SugarRecord {
      */
     private boolean ifDone;
     /**
+     * 是否星标
+     */
+    private boolean ifStar;
+    /**
      * 标题
      */
     private String title;
@@ -36,15 +54,37 @@ public class Todo extends SugarRecord {
     /**
      * 对应添加时间
      */
-    private Date date;
+    private Date addDate;
 
+    /**
+     * 过期时间
+     */
+    private Date expireDate;
+
+    /**
+     * 当前是否为按钮
+     */
+    private boolean isButton;
+    /**
+     * 是否已删除
+     */
+    private boolean isDel;
     //======
+
     public boolean getIfDone() {
         return ifDone;
     }
 
     public void setIfDone(boolean ifDone) {
         this.ifDone = ifDone;
+    }
+
+    public boolean getIfStar() {
+        return ifStar;
+    }
+
+    public void setIfStar(boolean ifStar) {
+        this.ifStar = ifStar;
     }
 
     public String getTitle() {
@@ -63,11 +103,37 @@ public class Todo extends SugarRecord {
         this.desc = desc;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getAddDate() {
+        return addDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public boolean getIsButton() {
+        return isButton;
+    }
+
+    public void setIsButton(boolean isButton) {
+        this.isButton = isButton;
+    }
+
+    public boolean getIsDel() {
+        return isDel;
+    }
+
+    public void setIstDel(boolean isDel) {
+        this.isDel = isDel;
+    }
+
+
 }

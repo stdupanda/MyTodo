@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -80,8 +79,7 @@ public class MainActivity extends FragmentActivity
         viewPager.setCurrentItem(0);
 
         //初始化时默认显示番茄钟
-        //rbClock.setChecked(true);
-        rbTodo.performClick();
+        rbClock.setChecked(true);
     }
 
     //---onCheckedChanged implement start

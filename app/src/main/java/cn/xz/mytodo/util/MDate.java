@@ -34,7 +34,39 @@ public class MDate {
         return sdf_time.format(new Date());
     }
 
+    /**
+     * 按照yyyy-MM-dd HH:mm:ss格式化时间
+     * @param date
+     * @return string
+     */
     public static String format(Date date) {
+        if (null == date) {
+            return "";
+        }
         return sdf_all.format(date);
+    }
+
+    /**
+     * 按照yyyy-MM-dd格式化时间
+     * @param date
+     * @return string
+     */
+    public static String formatDate(Date date) {
+        if (null == date) {
+            return "";
+        }
+        return sdf_day.format(date);
+    }
+
+    /**
+     * 按照HH:mm:ss格式化时间
+     * @param date
+     * @return string
+     */
+    public static String formatTime(Date date) {
+        if (null == date) {
+            return "";
+        }
+        return sdf_time.format(date);
     }
 }

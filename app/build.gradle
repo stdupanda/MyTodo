@@ -8,8 +8,8 @@ android {
         applicationId "cn.xz.mytodo"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName '1.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +17,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/anim'] } }
+    productFlavors {
     }
 }
 
@@ -31,5 +34,5 @@ dependencies {
     compile files('libs/sugar-1.4.jar')
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile files('libs/google-collections-1.0-rc2.jar')
+    compile files('libs/guava-20.0.jar')
 }
