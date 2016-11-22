@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.io.File;
@@ -166,6 +167,24 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 .getSharedPreferences(IConst.SP_FILE_NAME, Context.MODE_PRIVATE);
 
         final View view = View.inflate(getActivity(), R.layout.view_config, null);
+        final RadioButton rbClock = (RadioButton) view.findViewById(R.id.rb_clock);
+        RadioButton rbTodo = (RadioButton) view.findViewById(R.id.rb_todo);
+        int defaultView = sp.getInt(IConst.SP_KEY_DEFAULT_VIEW,
+                IConst.SP_VALUE_DEFAULT_VIEW_CLOCK);
+        switch (defaultView) {
+            case IConst.SP_VALUE_DEFAULT_VIEW_CLOCK: {
+                rbClock.setChecked(true);
+                break;
+            }
+            case IConst.SP_VALUE_DEFAULT_VIEW_TODO: {
+                rbTodo.performClick();
+                break;
+            }
+            default: {
+                rbClock.setChecked(true);
+                break;
+            }
+        }
 
         final EditText etPeriod = (EditText) view.findViewById(R.id.et_config_clock_period);
         etPeriod.setText(getString(R.string.place_holder,
@@ -195,8 +214,11 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 sp.edit()
                         .putInt(IConst.SP_KEY_CLOCK_PERIOD,
                                 Integer.parseInt(etPeriod.getText().toString()))
+                        .putInt(IConst.SP_KEY_DEFAULT_VIEW,
+                                rbClock.isChecked() ? IConst.SP_VALUE_DEFAULT_VIEW_CLOCK :
+                                        IConst.SP_VALUE_DEFAULT_VIEW_TODO)
                         .apply();
-                restartApp();
+                //restartApp();
             }
         });
         final AlertDialog configDialog = builder.create();

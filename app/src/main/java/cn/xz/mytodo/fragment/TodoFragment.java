@@ -388,7 +388,10 @@ public class TodoFragment extends Fragment
                 //MLog.log("after>>>" + dateStr);
             }
 
-            viewHolderTodo.tvDesc.setText(todo.getDesc() + dateStr);//编号
+            String desc = todo.getDesc().replace("\n", "");
+            //MLog.log(desc);
+            desc = desc.length() < 6 ? desc : desc.substring(0, 6);
+            viewHolderTodo.tvDesc.setText(desc + "..." + dateStr);//编号
             viewHolderTodo.cbIfDone.setChecked(todo.getIfDone());
             viewHolderTodo.cbIfStar.setChecked(todo.getIfStar());
 

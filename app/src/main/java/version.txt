@@ -4,4 +4,14 @@ Version Code:2
 待办支持新增、长按编辑、删除；
 更多界面增加导出待办列表的db文件到外置存储根路径，名字格式为todo_db_yyyyMMddHHmmss.db
 
->下次版本
+>2016-11-23版本
+Version Name:1.2
+Version Code:3
+待办编辑界面编辑时，屏幕增加下一项;
+设置界面中增加选择APP初始界面（番茄钟or待办界面）;
+待办列表内容只显示第一行，字数增加限制，以便显示出日期;
+修改APP的logo
+
+>2016-xx-xx版本
+Version Name:x.x.x.x
+Version Code:x

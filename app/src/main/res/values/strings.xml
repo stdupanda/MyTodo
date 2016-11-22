@@ -47,4 +47,5 @@
     <string name="add_ok">添加成功！</string>
     <string name="edit_ok">编辑成功！</string>
     <string name="export_data">导出数据</string>
+    <string name="start_view">初始界面：</string>
 </resources>

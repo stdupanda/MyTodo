@@ -1,5 +1,6 @@
 package cn.xz.mytodo;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.xz.mytodo.common.IConst;
 import cn.xz.mytodo.fragment.MyFragmentPagerAdapter;
 import cn.xz.mytodo.util.MLog;
 import cn.xz.mytodo.util.MToast;
@@ -33,6 +35,8 @@ public class MainActivity extends FragmentActivity
     public static final int PAGE_MORE = 2;
 
     private long mExitTime = 0;
+
+    private SharedPreferences sp;
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
@@ -64,6 +68,7 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sp = getSharedPreferences(IConst.SP_FILE_NAME, MODE_PRIVATE);
 
         ButterKnife.bind(this);
 
@@ -78,8 +83,24 @@ public class MainActivity extends FragmentActivity
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
 
-        //初始化时默认显示番茄钟
-        rbClock.setChecked(true);
+        //获取初始化时默认显示项目
+        int defaultView = sp.getInt(IConst.SP_KEY_DEFAULT_VIEW,
+                IConst.SP_VALUE_DEFAULT_VIEW_CLOCK);
+        switch (defaultView) {
+            case IConst.SP_VALUE_DEFAULT_VIEW_CLOCK: {
+                rbClock.setChecked(true);
+                break;
+            }
+            case IConst.SP_VALUE_DEFAULT_VIEW_TODO: {
+                rbTodo.performClick();
+                break;
+            }
+            default: {
+                rbClock.setChecked(true);
+                break;
+            }
+        }
+
     }
 
     //---onCheckedChanged implement start

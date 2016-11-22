@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -55,6 +56,7 @@ public class TodoActivity extends Activity {
         ButterKnife.bind(this);
 
         etTodoExpireDate.setFocusable(false);
+        etTodoContent.setNextFocusForwardId(R.id.et_todo_expire_date);
 
         intent = getIntent();
         operation = intent.getIntExtra(TodoFragment.INTENT_EXTRA_NAME_OPERATION, 0);

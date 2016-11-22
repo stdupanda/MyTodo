@@ -12,6 +12,7 @@
         android:paddingBottom="10dp"
         android:gravity="center"
         android:text="@string/todo_edit"
+        android:textColor="@color/flat_midnight_blue"
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -27,6 +28,7 @@
         android:paddingBottom="10dp"
         android:gravity="center"
         android:text="@string/todo_delete"
+        android:textColor="@color/flat_midnight_blue"
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

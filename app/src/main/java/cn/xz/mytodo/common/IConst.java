@@ -1,7 +1,7 @@
 package cn.xz.mytodo.common;
 
 public interface IConst {
-    String LOG_TAG = new String("xz");
+    String LOG_TAG = "xz";
     /**
      * 配置文件名字
      */
@@ -18,4 +18,8 @@ public interface IConst {
      * sp_default_value，番茄钟周期，单位：分钟
      */
     Integer SP_DEFAULT_VALUE_CLOCK_PERIOD = 25;
+
+    String SP_KEY_DEFAULT_VIEW = "default_view";
+    int SP_VALUE_DEFAULT_VIEW_CLOCK = 1;
+    int SP_VALUE_DEFAULT_VIEW_TODO = 2;
 }
