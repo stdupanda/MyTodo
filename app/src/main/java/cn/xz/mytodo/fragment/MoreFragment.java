@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -199,6 +200,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         builder.setView(view, 10, 0, 10, 0)
                 .setTitle("系统设置")
                 .setCancelable(false);
+        final AlertDialog configDialog = builder.create();
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,10 +220,13 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                                 rbClock.isChecked() ? IConst.SP_VALUE_DEFAULT_VIEW_CLOCK :
                                         IConst.SP_VALUE_DEFAULT_VIEW_TODO)
                         .apply();
+                configDialog.dismiss();
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                MToast.Show(getActivity(), "设置成功！");
                 //restartApp();
             }
         });
-        final AlertDialog configDialog = builder.create();
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
