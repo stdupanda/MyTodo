@@ -12,6 +12,13 @@ Version Code:3
 待办列表内容只显示第一行，字数增加限制，以便显示出日期;
 修改APP的logo
 
+>2016-11-23版本
+Version Name:1.2.1
+Version Code:4
+调整通知栏显示图标和显示样式;
+调整设置界面番茄钟时间为空时的问题；
+调整番茄钟界面每秒更新一次进度时圆形进度条显示逻辑，提高进度条显示精度;
+
 >2016-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

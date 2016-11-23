@@ -207,8 +207,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 String period = etPeriod.getText().toString();
 
                 if (TextUtils.isEmpty(period) || 0 > Integer.parseInt(period)) {
-                    etPeriod.setText(sp.getString(IConst.SP_KEY_CLOCK_PERIOD,
-                            "" + IConst.SP_DEFAULT_VALUE_CLOCK_PERIOD));
+                    etPeriod.setText(getString(R.string.place_holder, "" + sp.getInt(IConst.SP_KEY_CLOCK_PERIOD,
+                            IConst.SP_DEFAULT_VALUE_CLOCK_PERIOD)));
                     MToast.Show(getActivity(), "番茄钟周期不正确！");
                     etPeriod.requestFocus();
                     return;
@@ -230,6 +230,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 configDialog.dismiss();
             }
         });

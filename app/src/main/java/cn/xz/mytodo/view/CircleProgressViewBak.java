@@ -9,27 +9,25 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import java.text.DecimalFormat;
-
 /**
  * Xml中配置：
  * <com.xxx.view.CircleProgressBar
- * android:id="@+id/circleProgressbar"
- * android:layout_width="74dp"
- * android:layout_height="74dp"
- * android:layout_centerInParent="true" />
- * 代码中：
- * mCircleBar = (CircleProgressBar) findViewById(R.id.circleProgressbar);
- * mCircleBar.setProgress(80);
+ android:id="@+id/circleProgressbar"
+ android:layout_width="74dp"
+ android:layout_height="74dp"
+ android:layout_centerInParent="true" />
+ 代码中：
+ mCircleBar = (CircleProgressBar) findViewById(R.id.circleProgressbar);
+ mCircleBar.setProgress(80);
  * Created by gsx on 2016/10/16.
  */
 
-public class CircleProgressView extends View {
+public class CircleProgressViewBak extends View {
     private static final String TAG = "CircleProgressBar";
 
-    private float maxProgress = 100;
+    private int maxProgress = 100;
 
-    private float mProgress = 30;
+    private int mProgress = 30;
 
     private final int mCircleLineStrokeWidth = 8;
 
@@ -46,15 +44,12 @@ public class CircleProgressView extends View {
 
     private String txtHint2;
 
-    private DecimalFormat decimalFormat;
-
-    public CircleProgressView(Context context, AttributeSet attrs) {
+    public CircleProgressViewBak(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         this.context = context;
         rectF = new RectF();
         paint = new Paint();
-        decimalFormat = new DecimalFormat("0");
     }
 
     @Override
@@ -84,13 +79,11 @@ public class CircleProgressView extends View {
         // 绘制圆圈，进度条背景
         canvas.drawArc(rectF, -90, 360, false, paint);
         paint.setColor(Color.rgb(0xf8, 0x60, 0x30));
-        canvas.drawArc(rectF, -90, (mProgress / maxProgress) * (float) 360, false, paint);
+        canvas.drawArc(rectF, -90, ((float) mProgress / (float)maxProgress) * (float)360, false, paint);
 
         // 绘制进度文案显示
         paint.setStrokeWidth(txtStrokeWidth);
-        //String text = mProgress + "%";
-        //String text = decimalFormat.format(mProgress) + "%";
-        String text = (int) mProgress + "%";
+        String text = mProgress + "%";
         int textHeight = height / 4;
         paint.setTextSize(textHeight);
         int textWidth = (int) paint.measureText(text, 0, text.length());
@@ -119,7 +112,7 @@ public class CircleProgressView extends View {
         }
     }
 
-    public float getMaxProgress() {
+    public int getMaxProgress() {
         return maxProgress;
     }
 
@@ -127,12 +120,12 @@ public class CircleProgressView extends View {
         this.maxProgress = maxProgress;
     }
 
-    public void setProgress(float progress) {
+    public void setProgress(int progress) {
         this.mProgress = progress;
         this.invalidate();
     }
 
-    public void setProgressNotInUiThread(float progress) {
+    public void setProgressNotInUiThread(int progress) {
         this.mProgress = progress;
         this.postInvalidate();
     }

@@ -41,6 +41,8 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
     public static final int NOTIFICATION_ID = 0xa01;
     private final int REQUEST_CODE = 0xb01;
 
+    private SharedPreferences sp;
+
     private static final int SLEEP_PERIOD = 1000;
     private ExecutorService executorService = Executors.newCachedThreadPool();
     /**
@@ -55,7 +57,7 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
     /**
      * 一个番茄钟周期，单位：分钟
      */
-    private int CLOCK_TIME = 1;
+    private int CLOCK_TIME = 0;
 
     @BindView(R.id.mCircleProgressView)
     CircleProgressView mCircleView;
@@ -91,7 +93,7 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
         notificationManager = (NotificationManager)
                 getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
 
-        SharedPreferences sp = getActivity()
+        sp = getActivity()
                 .getSharedPreferences(IConst.SP_FILE_NAME, Context.MODE_PRIVATE);
         CLOCK_TIME = sp.getInt(IConst.SP_KEY_CLOCK_PERIOD, IConst.SP_DEFAULT_VALUE_CLOCK_PERIOD);
 
@@ -134,6 +136,7 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
                     .setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
         } else {
+            CLOCK_TIME = sp.getInt(IConst.SP_KEY_CLOCK_PERIOD, IConst.SP_DEFAULT_VALUE_CLOCK_PERIOD);
             new ClockTask().executeOnExecutor(executorService, "");
         }
         //MToast.Show(this, "" + SystemClock.currentThreadTimeMillis());
@@ -181,7 +184,7 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private class ClockTask extends AsyncTask<String, Long, String> {//Params, Progress, Result
+    private class ClockTask extends AsyncTask<String, Float, String> {//Params, Progress, Result
 
         int timeTotal = CLOCK_TIME * 60;//秒
         int timeLeft = timeTotal;
@@ -194,14 +197,14 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected String doInBackground(String... params) {
-            long ps;
+            Float ps;
             while (1 <= timeLeft) {
                 if (ifNeedStop) {
                     return "STOP_CLOCK";
                 }
                 timeLeft--;
 
-                ps = ((timeTotal - timeLeft) * 100) / timeTotal;
+                ps = ((timeTotal - timeLeft) * 100) / (float)timeTotal;
                 publishProgress(ps);
 
                 SystemClock.sleep(SLEEP_PERIOD);
@@ -220,9 +223,9 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
         }
 
         @Override
-        protected void onProgressUpdate(Long... values) {
-            Long val = values[0];
-            mCircleView.setProgress(val.intValue());
+        protected void onProgressUpdate(Float... values) {
+            Float val = values[0];
+            mCircleView.setProgress(val);
             mCircleView.setTxtHint1("" + formatNumber(timeLeft / 60) + ":" + formatNumber(timeLeft % 60));
             mCircleView.setTxtHint2("" + CLOCK_TIME + "min");
             //MLog.log(timeLeft);
@@ -245,7 +248,7 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                 getActivity());
         // 此处设置的图标仅用于显示新提醒时候出现在设备的通知栏
-        mBuilder.setSmallIcon(R.drawable.tomato_logo);
+        mBuilder.setSmallIcon(R.mipmap.clock);
         mBuilder.setContentTitle("通知的标题");
         mBuilder.setContentText("通知的内容");
         Notification notification = mBuilder.build();

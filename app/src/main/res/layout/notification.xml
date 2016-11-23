@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -12,10 +13,10 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:src="@drawable/tomato_logo32"
+            android:src="@mipmap/clock"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
         <TextView
             android:gravity="center_vertical"
             android:id="@+id/tv_syncing"
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/clock_finished"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>
