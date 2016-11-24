@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -58,6 +59,8 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
      * 一个番茄钟周期，单位：分钟
      */
     private int CLOCK_TIME = 0;
+
+    int NotificationSmallIcon = R.mipmap.todo_tick_24;
 
     @BindView(R.id.mCircleProgressView)
     CircleProgressView mCircleView;
@@ -204,12 +207,13 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
                 }
                 timeLeft--;
 
-                ps = ((timeTotal - timeLeft) * 100) / (float)timeTotal;
+                ps = ((timeTotal - timeLeft) * 100) / (float) timeTotal;
                 publishProgress(ps);
 
                 SystemClock.sleep(SLEEP_PERIOD);
             }
-            sendNotification();
+            //sendNotification();
+            sendSimpleNotification();
             return "STOP_CLOCK";
         }
 
@@ -248,15 +252,17 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                 getActivity());
         // 此处设置的图标仅用于显示新提醒时候出现在设备的通知栏
-        mBuilder.setSmallIcon(R.mipmap.clock);
-        mBuilder.setContentTitle("通知的标题");
-        mBuilder.setContentText("通知的内容");
+        mBuilder.setSmallIcon(NotificationSmallIcon)
+                .setTicker("哈哈哈")
+                .setContentTitle("通知的标题")
+                .setContentText("通知的内容");
         Notification notification = mBuilder.build();
 
         // 当用户下来通知栏时候看到的就是RemoteViews中自定义的Notification布局
         RemoteViews contentView = new RemoteViews(getActivity().getPackageName(),
                 R.layout.notification);
         notification.contentView = contentView;
+        MLog.log(contentView.getPackage());
         notification.contentView.setTextViewText(R.id.tv_syncing,
                 getString(R.string.clock_finished));
         // 发送通知到通知栏时：提示声音 + 手机震动 + 点亮Android手机呼吸灯。
@@ -265,6 +271,40 @@ public class ClockFragment extends Fragment implements View.OnClickListener {
         notification.defaults = Notification.DEFAULT_SOUND
                 | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS;
         //notification.flags = Notification.FLAG_NO_CLEAR;
+        notification.flags = Notification.FLAG_AUTO_CANCEL;//使得可以清除
+        // 通知的时间
+        notification.when = System.currentTimeMillis();
+        // 需要注意的是，作为选项，此处可以设置MainActivity的启动模式为singleTop，避免重复新建onCreate()。
+                /* <activity android:launchMode="singleTop" */
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);//点击进入新activity，会打开多个相同activity，需要在Intent设置如下flag
+        // 当用户点击通知栏的Notification时候，切换回MainActivity。
+        PendingIntent pi = PendingIntent.getActivity(getActivity(), REQUEST_CODE,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        MLog.log(pi);
+        notification.contentIntent = pi;
+        // 发送到手机的通知栏
+        notificationManager.notify(NOTIFICATION_ID, notification);
+    }
+
+    private void sendSimpleNotification() {
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+                getActivity());
+        // 此处设置的图标仅用于显示新提醒时候出现在设备的通知栏
+        mBuilder.setSmallIcon(NotificationSmallIcon)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.todo_tick_48))
+                .setTicker("番茄钟已完成！")
+                .setContentTitle("番茄钟" + CLOCK_TIME + "min")
+                .setContentText("番茄钟已完成！");
+        Notification notification = mBuilder.build();
+
+        // 发送通知到通知栏时：提示声音 + 手机震动 + 点亮Android手机呼吸灯。
+        // 注意！！（提示声音 + 手机震动）这两项基本上Android手机均支持。
+        // 但Android呼吸灯能否点亮则取决于各个手机硬件制造商自家的设置。
+        notification.defaults = Notification.DEFAULT_SOUND
+                | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS;
+
         notification.flags = Notification.FLAG_AUTO_CANCEL;//使得可以清除
         // 通知的时间
         notification.when = System.currentTimeMillis();

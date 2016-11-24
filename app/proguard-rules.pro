@@ -15,3 +15,22 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
+
+-dontwarn org.apache.**
+-keep class org.apache.** { *;}
+
+-dontwarn com.google.**
+-keep class com.google.** { *;}
+
+-keep class com.yourpackage.yourapp.domainclasspackage.** { *; }

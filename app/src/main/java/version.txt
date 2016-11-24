@@ -19,6 +19,12 @@ Version Code:4
 调整设置界面番茄钟时间为空时的问题；
 调整番茄钟界面每秒更新一次进度时圆形进度条显示逻辑，提高进度条显示精度;
 
+>2016-11-2x版本
+Version Name:1.2.2
+Version Code:5
+调整APP图标,调整通知栏整体样式采用简单样式，去除自定义布局;
+设置Proguard文件
+
 >2016-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

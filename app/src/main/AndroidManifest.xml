@@ -9,7 +9,7 @@
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ico"
+        android:icon="@mipmap/todo_log_bulb"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
