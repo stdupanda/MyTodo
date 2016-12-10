@@ -133,7 +133,7 @@ public class TodoActivity extends Activity {
             setResult(TodoFragment.RESULT_OPERATE_NONE, intent);
         }
         finish();
-        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        //overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
 
     @OnClick(R.id.et_todo_expire_date)
@@ -159,6 +159,6 @@ public class TodoActivity extends Activity {
     void layoutBack() {
         setResult(TodoFragment.RESULT_OPERATE_NONE, intent);
         finish();
-        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        //overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
 }

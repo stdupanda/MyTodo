@@ -41,7 +41,7 @@
 
     <style name="MyCheckBox32" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/selector_cb32</item>
-        <item name="android:paddingLeft">35dip</item>
+        <item name="android:paddingLeft">10dp</item>
     </style>
 
     <style name="MyCheckBoxStar32" parent="@android:style/Widget.CompoundButton.CheckBox">

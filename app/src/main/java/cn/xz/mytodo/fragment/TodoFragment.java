@@ -390,8 +390,8 @@ public class TodoFragment extends Fragment
 
             String desc = todo.getDesc().replace("\n", "");
             //MLog.log(desc);
-            desc = desc.length() < 6 ? desc : desc.substring(0, 6);
-            viewHolderTodo.tvDesc.setText(desc + "..." + dateStr);//编号
+            desc = desc.length() < 10 ? desc : desc.substring(0, 10) + "...";
+            viewHolderTodo.tvDesc.setText(desc + " " + dateStr);//编号
             viewHolderTodo.cbIfDone.setChecked(todo.getIfDone());
             viewHolderTodo.cbIfStar.setChecked(todo.getIfStar());
 
@@ -478,7 +478,7 @@ public class TodoFragment extends Fragment
         bundle.putLong(INTENT_EXTRA_NAME_TODO_ID, todoId);
         intent.putExtras(bundle);
         startActivityForResult(intent, requestCode);
-        getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+        //getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
     private String parseDateStr(Calendar calendar) {

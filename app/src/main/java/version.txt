@@ -25,6 +25,12 @@ Version Code:5
 调整APP图标,调整通知栏整体样式采用简单样式，去除自定义布局;
 设置Proguard文件
 
+>2016-12-10版本
+Version Name:1.2.3
+Version Code:6
+调整待办事项详情、编辑界面切换动画，取消左右进入的效果，改为手机自带效果
+调整待办事项列表显示界面
+
 >2016-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

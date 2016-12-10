@@ -33,4 +33,5 @@
 -dontwarn com.google.**
 -keep class com.google.** { *;}
 
--keep class com.yourpackage.yourapp.domainclasspackage.** { *; }
+#sugar-orm
+-keep class cn.xz.mytodo.entity.** { *; }
