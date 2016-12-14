@@ -24,7 +24,7 @@
     <string name="add_todo">添加待办事项...</string>
     <string name="todo_view">查看待办事项</string>
     <string name="todo_add">添加待办事项</string>
-    <string name="todo_edit">编辑待办事项</string>
+    <string name="todo_edit">编辑 待办事项</string>
     <string name="show_finished">显示已完成</string>
     <string name="str_title">标题</string>
     <string name="str_date">2016-10-25，今天</string>
@@ -39,7 +39,7 @@
     <string name="err_title">待办标题不能为空！</string>
     <string name="add_todo_ok">添加待办事项成功！</string>
     <string name="error_access">非法访问！</string>
-    <string name="todo_delete">删除待办事项</string>
+    <string name="todo_delete">删除 待办事项</string>
     <string name="edit_todo_ok">编辑待办事项成功！</string>
     <string name="del_todo_ok">删除待办事项成功！</string>
     <string name="add_todo_expire_date">截止日期:</string>

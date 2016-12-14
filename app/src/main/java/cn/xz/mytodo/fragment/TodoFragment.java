@@ -1,5 +1,6 @@
 package cn.xz.mytodo.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -416,11 +417,23 @@ public class TodoFragment extends Fragment
                     tvDel.setOnClickListener(new View.OnClickListener() {//删除
                         @Override
                         public void onClick(View v) {
-                            todo.setIstDel(true);
-                            todo.save();
-                            MToast.Show(getActivity(), getString(R.string.del_todo_ok));
-                            mSwipeRefreshLayout.setRefreshing(true);
-                            handler.sendEmptyMessage(TodoFragment.buttonState);
+                            AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+                            b.setCancelable(false)
+                                    .setMessage("确定要删除吗？")
+                                    .setTitle("提示")
+                                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            todo.setIstDel(true);
+                                            todo.save();
+                                            MToast.Show(getActivity(), getString(R.string.del_todo_ok));
+                                            mSwipeRefreshLayout.setRefreshing(true);
+                                            handler.sendEmptyMessage(TodoFragment.buttonState);
+                                        }
+                                    }).setNegativeButton("否", null);
+                            AlertDialog a = b.create();
+                            a.show();
+
                             alertDialog.dismiss();
                         }
                     });

@@ -31,6 +31,14 @@ Version Code:6
 调整待办事项详情、编辑界面切换动画，取消左右进入的效果，改为手机自带效果
 调整待办事项列表显示界面
 
+>2016-12-14版本
+Version Name:1.2.4
+Version Code:7
+签名证书采用xz
+待办事项列表ListView界面：
+点击时增加背景色
+长按弹出界面区分编辑删除，点击删除时弹出确认框以防误操作。
+
 >2016-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x
