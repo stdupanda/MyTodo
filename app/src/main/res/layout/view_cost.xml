@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_smoke"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/choose_cost_type" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:id="@+id/sp_cost_type"
+                android:layout_weight="1"
+                android:background="@drawable/bg_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:entries="@array/datas"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_cost_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/bg_et"
+        android:hint="@string/insert_cost"
+        android:inputType="number"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:textColor="@drawable/selector_et_text_color"
+        android:textColorHint="#aaaaaa"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/et_cost_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/bg_et"
+        android:hint="@string/insert_cost_title"
+        android:inputType="text"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:textColor="@drawable/selector_et_text_color"
+        android:textColorHint="#aaaaaa"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_dialog_del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/selector_tv_more_exit"
+        android:clickable="true"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:text="@string/cost_add"
+        android:textColor="@color/flat_midnight_blue"
+        android:textSize="20sp" />
+
+</LinearLayout>

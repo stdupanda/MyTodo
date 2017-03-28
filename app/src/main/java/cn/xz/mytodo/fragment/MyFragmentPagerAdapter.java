@@ -10,14 +10,16 @@ import cn.xz.mytodo.util.MLog;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private final int PAGE_COUNT = 3;
+    private final int PAGE_COUNT = 4;
     private ClockFragment clockFragment = null;
+    private MoneyFragment moneyFragment = null;
     private TodoFragment todoFragment = null;
     private MoreFragment moreFragment = null;
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
         clockFragment = new ClockFragment();
+        moneyFragment = new MoneyFragment();
         todoFragment = new TodoFragment();
         moreFragment = new MoreFragment();
     }
@@ -41,6 +43,10 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case MainActivity.PAGE_CLOCK: {
                 fragment = clockFragment;
+                break;
+            }
+            case MainActivity.PAGE_MONEY: {
+                fragment = moneyFragment;
                 break;
             }
             case MainActivity.PAGE_TODO: {

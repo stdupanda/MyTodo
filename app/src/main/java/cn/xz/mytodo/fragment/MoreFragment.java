@@ -30,6 +30,7 @@ import java.io.OutputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.xz.mytodo.CostTypeActivity;
 import cn.xz.mytodo.R;
 import cn.xz.mytodo.common.IConst;
 import cn.xz.mytodo.util.MDate;
@@ -52,6 +53,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     TextView tvHelp;
     @BindView(R.id.tv_frg_more_exit)
     TextView tvExit;
+    @BindView(R.id.tv_frg_more_cost_type)
+    TextView tvCostType;
 
     @Nullable
     @Override
@@ -71,6 +74,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         tvSetting.setOnClickListener(this);
         tvHelp.setOnClickListener(this);
         tvExit.setOnClickListener(this);
+        tvCostType.setOnClickListener(this);
 
         MLog.log("更多！");
     }
@@ -98,6 +102,10 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             }
             case R.id.tv_frg_more_help: {
                 showHelpDialog();
+                break;
+            }
+            case R.id.tv_frg_more_cost_type: {
+                goCostTypeActivity();
                 break;
             }
             default: {
@@ -169,12 +177,17 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
         final View view = View.inflate(getActivity(), R.layout.view_config, null);
         final RadioButton rbClock = (RadioButton) view.findViewById(R.id.rb_clock);
-        RadioButton rbTodo = (RadioButton) view.findViewById(R.id.rb_todo);
+        final RadioButton rbTodo = (RadioButton) view.findViewById(R.id.rb_todo);
+        final RadioButton rbMoney = (RadioButton) view.findViewById(R.id.rb_money);
         int defaultView = sp.getInt(IConst.SP_KEY_DEFAULT_VIEW,
                 IConst.SP_VALUE_DEFAULT_VIEW_CLOCK);
         switch (defaultView) {
             case IConst.SP_VALUE_DEFAULT_VIEW_CLOCK: {
                 rbClock.setChecked(true);
+                break;
+            }
+            case IConst.SP_VALUE_DEFAULT_VIEW_MONEY: {
+                rbMoney.performClick();
                 break;
             }
             case IConst.SP_VALUE_DEFAULT_VIEW_TODO: {
@@ -213,12 +226,20 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                     etPeriod.requestFocus();
                     return;
                 }
+
+                int selected = -1;
+                if (rbClock.isChecked()) {
+                    selected = IConst.SP_VALUE_DEFAULT_VIEW_CLOCK;
+                } else if (rbTodo.isChecked()) {
+                    selected = IConst.SP_VALUE_DEFAULT_VIEW_TODO;
+                } else if (rbMoney.isChecked()) {
+                    selected = IConst.SP_VALUE_DEFAULT_VIEW_MONEY;
+                }
+
                 sp.edit()
                         .putInt(IConst.SP_KEY_CLOCK_PERIOD,
                                 Integer.parseInt(etPeriod.getText().toString()))
-                        .putInt(IConst.SP_KEY_DEFAULT_VIEW,
-                                rbClock.isChecked() ? IConst.SP_VALUE_DEFAULT_VIEW_CLOCK :
-                                        IConst.SP_VALUE_DEFAULT_VIEW_TODO)
+                        .putInt(IConst.SP_KEY_DEFAULT_VIEW, selected)
                         .apply();
                 configDialog.dismiss();
                 getActivity().getWindow().setSoftInputMode(
@@ -236,6 +257,15 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             }
         });
         configDialog.show();
+    }
+
+    private void goCostTypeActivity(){
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), CostTypeActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("a", 1);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, -1);
     }
 
     private void restartApp() {

@@ -3,13 +3,13 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "cn.xz.mytodo"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 7
-        versionName '1.2.4'
+        versionCode 8
+        versionName '1.2.5'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +17,13 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
+            jniDebuggable false
+            zipAlignEnabled true
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
             jniDebuggable false
             zipAlignEnabled true
         }

@@ -21,5 +21,6 @@ public interface IConst {
 
     String SP_KEY_DEFAULT_VIEW = "default_view";
     int SP_VALUE_DEFAULT_VIEW_CLOCK = 1;
-    int SP_VALUE_DEFAULT_VIEW_TODO = 2;
+    int SP_VALUE_DEFAULT_VIEW_MONEY = 2;
+    int SP_VALUE_DEFAULT_VIEW_TODO = 3;
 }

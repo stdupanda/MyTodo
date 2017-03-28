@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="datas">
+        <item>c语言</item>
+        <item>java </item>
+        <item>php</item>
+        <item>xml</item>
+        <item>html</item>
+        <item>html2</item>
+        <item>html3</item>
+        <item>html4</item>
+        <item>html5</item>
+        <item>html6</item>
+        <item>html7</item>
+        <item>html8</item>
+        <item>html</item>
+        <item>html</item>
+        <item>html</item>
+        <item>html</item>
+    </string-array>
+</resources>

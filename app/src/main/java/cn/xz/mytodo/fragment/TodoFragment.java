@@ -413,6 +413,7 @@ public class TodoFragment extends Fragment
                     final AlertDialog alertDialog = builder.create();
                     TextView tvDel = (TextView) view.findViewById(R.id.tv_dialog_del);
                     TextView tvEdit = (TextView) view.findViewById(R.id.tv_dialog_edit);
+                    tvDel.setCompoundDrawablePadding(10);
 
                     tvDel.setOnClickListener(new View.OnClickListener() {//删除
                         @Override

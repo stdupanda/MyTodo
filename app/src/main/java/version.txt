@@ -39,6 +39,18 @@ Version Code:7
 点击时增加背景色
 长按弹出界面区分编辑删除，点击删除时弹出确认框以防误操作。
 
+>2016-12-xx版本
+Version Name:1.2.4
+Version Code:7
+调整readme文件格式
+
+>2017-03-26版本
+Version Name:1.2.5
+Version Code:8
+AndroidManifest.xml文件中 sugarORM 的version改为3,因为调整了数据库表，让sugarORM重新创建新的表结构
+调整待办界面文字框内的文字与边界的距离，便于查看
+增加记账界面，弹出对话框选择日期、类别并输入日常消费金额，存入db；
+
 >2016-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

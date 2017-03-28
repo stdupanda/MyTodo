@@ -37,6 +37,12 @@
             android:text="@string/clock" />
 
         <RadioButton
+            android:id="@+id/rb_money"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/selector_tab_money"
+            android:text="@string/money" />
+
+        <RadioButton
             android:id="@+id/rb_todo"
             style="@style/tab_menu_item"
             android:drawableTop="@drawable/selector_tab_todo"

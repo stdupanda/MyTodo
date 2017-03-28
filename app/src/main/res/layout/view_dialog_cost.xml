@@ -5,25 +5,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:drawableLeft="@drawable/icon_edit"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:id="@+id/tv_dialog_edit"
-        android:background="@drawable/selector_tv_add_todo"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:gravity="center"
-        android:text="@string/todo_edit"
-        android:textColor="@color/flat_midnight_blue"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:background="@color/flat_clouds"
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
-
-    <TextView
         android:drawableLeft="@drawable/icon_del"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"

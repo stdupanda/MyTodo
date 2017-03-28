@@ -26,13 +26,17 @@ public class MainActivity extends FragmentActivity
      */
     public static final int PAGE_CLOCK = 0;
     /**
+     * 记账
+     */
+    public static final int PAGE_MONEY = 1;
+    /**
      * 待办列表
      */
-    public static final int PAGE_TODO = 1;
+    public static final int PAGE_TODO = 2;
     /**
      * 更多
      */
-    public static final int PAGE_MORE = 2;
+    public static final int PAGE_MORE = 3;
 
     private long mExitTime = 0;
 
@@ -50,6 +54,8 @@ public class MainActivity extends FragmentActivity
     RadioGroup radioGroup;
     @BindView(R.id.rb_clock)
     RadioButton rbClock;
+    @BindView(R.id.rb_money)
+    RadioButton rbMoney;
     @BindView(R.id.rb_todo)
     RadioButton rbTodo;
     @BindView(R.id.rb_more)
@@ -78,7 +84,7 @@ public class MainActivity extends FragmentActivity
         MLog.log(supportFragmentManager);
         mAdapter = new MyFragmentPagerAdapter(supportFragmentManager);
 
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(PAGE_MORE);
         viewPager.setAdapter(mAdapter);
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
@@ -89,6 +95,10 @@ public class MainActivity extends FragmentActivity
         switch (defaultView) {
             case IConst.SP_VALUE_DEFAULT_VIEW_CLOCK: {
                 rbClock.setChecked(true);
+                break;
+            }
+            case IConst.SP_VALUE_DEFAULT_VIEW_MONEY: {
+                rbMoney.performClick();
                 break;
             }
             case IConst.SP_VALUE_DEFAULT_VIEW_TODO: {
@@ -110,6 +120,10 @@ public class MainActivity extends FragmentActivity
             case R.id.rb_clock:
                 viewPager.setCurrentItem(PAGE_CLOCK);
                 tvTop.setText(getText(R.string.clock));
+                break;
+            case R.id.rb_money:
+                viewPager.setCurrentItem(PAGE_MONEY);
+                tvTop.setText(getText(R.string.money));
                 break;
             case R.id.rb_todo:
                 viewPager.setCurrentItem(PAGE_TODO);
@@ -143,6 +157,9 @@ public class MainActivity extends FragmentActivity
             switch (viewPager.getCurrentItem()) {
                 case PAGE_CLOCK:
                     rbClock.setChecked(true);
+                    break;
+                case PAGE_MONEY:
+                    rbMoney.setChecked(true);
                     break;
                 case PAGE_TODO:
                     rbTodo.setChecked(true);

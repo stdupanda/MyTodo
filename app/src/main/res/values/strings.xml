@@ -6,7 +6,7 @@
     <string name="setting">设置</string>
     <string name="help">帮助</string>
     <string name="about">关于</string>
-    <string name="logout">退出</string>
+    <string name="logout">退 出</string>
     <string name="tv_real_time_data">温:%1$s℃,湿:%2$s％,环:%3$s℃</string>
     <string name="title_bar">顶部导航</string>
     <string name="clock">番茄钟</string>
@@ -24,7 +24,7 @@
     <string name="add_todo">添加待办事项...</string>
     <string name="todo_view">查看待办事项</string>
     <string name="todo_add">添加待办事项</string>
-    <string name="todo_edit">编辑 待办事项</string>
+    <string name="todo_edit">编辑</string>
     <string name="show_finished">显示已完成</string>
     <string name="str_title">标题</string>
     <string name="str_date">2016-10-25，今天</string>
@@ -39,7 +39,7 @@
     <string name="err_title">待办标题不能为空！</string>
     <string name="add_todo_ok">添加待办事项成功！</string>
     <string name="error_access">非法访问！</string>
-    <string name="todo_delete">删除 待办事项</string>
+    <string name="todo_delete">删除</string>
     <string name="edit_todo_ok">编辑待办事项成功！</string>
     <string name="del_todo_ok">删除待办事项成功！</string>
     <string name="add_todo_expire_date">截止日期:</string>
@@ -48,4 +48,20 @@
     <string name="edit_ok">编辑成功！</string>
     <string name="export_data">导出数据</string>
     <string name="start_view">初始界面：</string>
+    <string name="money">记账</string>
+    <string name="insert_cost">请输入消费金额</string>
+    <string name="add_cost">记一笔</string>
+    <string name="str_title_cost">支出类别+金额</string>
+    <string name="str_date_cost">详细说明+日期</string>
+    <string name="del_cost_ok">删除记录成功！</string>
+    <string name="cost_add">确定</string>
+    <string name="please_insert_cost_count">请先输入消费金额！</string>
+    <string name="insert_cost_title">请输入描述信息（可选）</string>
+    <string name="cost_type">账目类型</string>
+    <string name="add_cost_type">新增</string>
+    <string name="choose_cost_type">选择类别：</string>
+    <string name="insert_cost_type">输入类别：</string>
+    <string name="please_insert_cost_type_name">请输入消费类别名</string>
+    <string name="str_cost_type">此处显示消费类型</string>
+    <string name="del_cost_type_ok">删除成功！</string>
 </resources>

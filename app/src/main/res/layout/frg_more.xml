@@ -12,6 +12,16 @@
         android:drawableLeft="@drawable/setting"
         android:drawableRight="@drawable/icon_arrow"
         android:text="@string/setting" />
+
+    <TextView
+        android:id="@+id/tv_frg_more_cost_type"
+        style="@style/tv_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/cost_type"
+        android:drawableRight="@drawable/icon_arrow"
+        android:text="@string/cost_type" />
+
     <TextView
         android:id="@+id/tv_frg_more_exp"
         style="@style/tv_more"
@@ -20,6 +30,7 @@
         android:drawableLeft="@drawable/export"
         android:drawableRight="@drawable/icon_arrow"
         android:text="@string/export_data" />
+
     <TextView
         android:id="@+id/tv_frg_more_help"
         style="@style/tv_more"
@@ -28,6 +39,7 @@
         android:drawableLeft="@drawable/help"
         android:drawableRight="@drawable/icon_arrow"
         android:text="@string/help" />
+
     <TextView
         android:id="@+id/tv_frg_more_about"
         style="@style/tv_more"
