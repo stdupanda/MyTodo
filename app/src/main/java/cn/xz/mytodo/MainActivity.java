@@ -1,5 +1,6 @@
 package cn.xz.mytodo;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -180,11 +181,20 @@ public class MainActivity extends FragmentActivity
                 MToast.Show(this, "再按一次退出程序！");
                 mExitTime = System.currentTimeMillis();
             } else {
-                finish();
-                System.exit(0);
+                //finish();
+                //System.exit(0);
+                goHome();
+
             }
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void goHome(){
+        Intent backHome = new Intent(Intent.ACTION_MAIN);
+        backHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        backHome.addCategory(Intent.CATEGORY_HOME);
+        startActivity(backHome);
     }
 }

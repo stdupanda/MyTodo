@@ -85,7 +85,7 @@ public class CostTypeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost_type);
         ButterKnife.bind(this);
-        MToast.Show(this, "" + lvCostType.getWidth() + "xxx");
+        //MToast.Show(this, "" + lvCostType.getWidth() + "xxx");
 
         costTypeListAdapter = new CostTypeListAdapter();
 
@@ -198,6 +198,7 @@ public class CostTypeActivity extends Activity {
             viewHolder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    MToast.Show(CostTypeActivity.this, costType.getTypeName());
                     return;
                 }
             });

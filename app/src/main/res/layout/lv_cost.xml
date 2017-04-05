@@ -25,6 +25,8 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="@string/str_title_cost"
                 android:textSize="16sp" />
 
@@ -32,6 +34,8 @@
                 android:id="@+id/tv_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="@string/str_date_cost"
                 android:textColor="@color/flat_belize_hole"
                 android:textSize="12sp" />
