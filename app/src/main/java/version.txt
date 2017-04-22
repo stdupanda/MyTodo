@@ -51,6 +51,14 @@ AndroidManifest.xml文件中 sugarORM 的version改为3,因为调整了数据库
 调整待办界面文字框内的文字与边界的距离，便于查看
 增加记账界面，弹出对话框选择日期、类别并输入日常消费金额，存入db；
 
+>2017-04-22版本
+Version Name:1.2.6
+Version Code:9
+调整入口activity为splash图片实现冷启动app迅速响应
+资源文件中加入百度贴吧奔跑小熊的素材，暂未实现欢迎界面动画展示
+解决待办编辑界面点击日期后对话框永远为当前日期的bug
+新增记账界面支持自定义日期
+
 >2016-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

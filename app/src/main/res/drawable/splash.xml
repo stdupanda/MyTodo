@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"><!--背景色-->
+    <item android:drawable="@color/white"/>
+    <item>
+        <!--图片-->
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/gif_loading1" />
+    </item>
+</layer-list>

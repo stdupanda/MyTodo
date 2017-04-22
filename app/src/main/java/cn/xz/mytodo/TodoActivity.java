@@ -2,6 +2,7 @@ package cn.xz.mytodo;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -24,6 +25,7 @@ import butterknife.OnClick;
 import cn.xz.mytodo.entity.Todo;
 import cn.xz.mytodo.fragment.TodoFragment;
 import cn.xz.mytodo.util.MDate;
+import cn.xz.mytodo.util.MLog;
 import cn.xz.mytodo.util.MToast;
 
 public class TodoActivity extends Activity {
@@ -138,19 +140,42 @@ public class TodoActivity extends Activity {
     @OnClick(R.id.et_todo_expire_date)
     void showExpireDate() {
         String now = etTodoExpireDate.getText().toString();
-        if (!StringUtils.isBlank(now)) {
+        int year = -1;
+        int monthOfYear = -1;
+        int dayOfMonth = -1;
+        if (!StringUtils.isBlank(now)) {// 待办设置了时间"2017-04-19"
             ContextCompat.getColor(this, R.color.white);
+            try {
+                year = Integer.parseInt(now.substring(0, 4));
+                monthOfYear = Integer.parseInt(now.substring(5, 7)) - 1;
+                dayOfMonth = Integer.parseInt(now.substring(8, 10));
+            } catch (Exception e) {
+                MLog.log(e);
+            }
+        } else {
+            Calendar calendar = Calendar.getInstance();
+            year = calendar.get(Calendar.YEAR);
+            monthOfYear = calendar.get(Calendar.MONTH);
+            dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         }
-        Calendar calendar = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(this, null, year, monthOfYear, dayOfMonth);
+        datePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消", new DialogInterface.OnClickListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                String yearStr = StringUtils.leftPad("" + year, 4, "0");
-                String monthStr = StringUtils.leftPad("" + (monthOfYear + 1), 2, "0");
-                String dayStr = StringUtils.leftPad("" + dayOfMonth, 2, "0");
+            public void onClick(DialogInterface dialog, int which) {
+                //
+            }
+        });
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DatePicker picker = datePickerDialog.getDatePicker();
+                String yearStr = StringUtils.leftPad("" + picker.getYear(), 4, "0");
+                String monthStr = StringUtils.leftPad("" + (picker.getMonth() + 1), 2, "0");
+                String dayStr = StringUtils.leftPad("" + picker.getDayOfMonth(), 2, "0");
                 etTodoExpireDate.setText(yearStr + "-" + monthStr + "-" + dayStr);
             }
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        });
         datePickerDialog.show();
     }
 

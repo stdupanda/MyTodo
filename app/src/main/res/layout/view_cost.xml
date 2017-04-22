@@ -73,7 +73,22 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tv_dialog_del"
+        android:id="@+id/tv_cost_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/bg_et"
+        android:hint="@string/insert_cost_date"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:textColor="@drawable/selector_et_text_color"
+        android:textColorHint="#aaaaaa"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_dialog_cost_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"

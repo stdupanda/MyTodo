@@ -1,5 +1,6 @@
 package cn.xz.mytodo.fragment;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,12 +22,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,6 +51,7 @@ import cn.xz.mytodo.util.MToast;
 public class MoneyFragment extends Fragment
         implements SwipeRefreshLayout.OnRefreshListener {
 
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private static final int TYPE_COST = 0;
     public List<CostType> costTypeList = new ArrayList<>();
 
@@ -133,10 +139,46 @@ public class MoneyFragment extends Fragment
                 builder.setCancelable(true)
                         .setView(view);
                 final AlertDialog alertDialog = builder.create();
-                TextView tvAdd = (TextView) view.findViewById(R.id.tv_dialog_del);
-                tvAdd.setCompoundDrawablePadding(10);
+                // init date TextView
+                final TextView tvDate = (TextView) view.findViewById(R.id.tv_cost_date);
+                tvDate.setText(sdf.format(new Date()));
+                tvDate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {// 消费日期
+                        MLog.log("setOnClickListener");
+                        int year = -1;
+                        int monthOfYear = -1;
+                        int dayOfMonth = -1;
+                        Calendar calendar = Calendar.getInstance();
+                        year = calendar.get(Calendar.YEAR);
+                        monthOfYear = calendar.get(Calendar.MONTH);
+                        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-                tvAdd.setOnClickListener(new View.OnClickListener() {
+                        final DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), null, year, monthOfYear, dayOfMonth);
+                        datePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //
+                            }
+                        });
+                        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatePicker picker = datePickerDialog.getDatePicker();
+                                String yearStr = StringUtils.leftPad("" + picker.getYear(), 4, "0");
+                                String monthStr = StringUtils.leftPad("" + (picker.getMonth() + 1), 2, "0");
+                                String dayStr = StringUtils.leftPad("" + picker.getDayOfMonth(), 2, "0");
+                                tvDate.setText(yearStr + "-" + monthStr + "-" + dayStr);
+                            }
+                        });
+                        datePickerDialog.show();
+                    }
+                });
+
+                // init add TextView
+                TextView innerTvAdd = (TextView) view.findViewById(R.id.tv_dialog_cost_add);
+                innerTvAdd.setCompoundDrawablePadding(10);
+                innerTvAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int count = 0;
@@ -156,9 +198,16 @@ public class MoneyFragment extends Fragment
                         Spinner spinner = (Spinner) view.findViewById(R.id.sp_cost_type);
                         String cost_type = spinner.getSelectedItem().toString();
 
+
+
                         //新增 消费 记录
                         Cost cost = new Cost();
-                        cost.setCostDate(new Date());//当天日期
+                        try {
+                            cost.setCostDate(sdf.parse(tvDate.getText().toString()));
+                        } catch (ParseException e) {
+                            cost.setCostDate(new Date());//当天日期
+                            e.printStackTrace();
+                        }
                         cost.setCostTitle(title.trim());
                         cost.setCostType(cost_type);
                         cost.setCount(count);
@@ -171,6 +220,7 @@ public class MoneyFragment extends Fragment
                         handler.sendEmptyMessage(MoneyFragment.WHAT_REFRESH_ALL);
                     }
                 });
+
                 alertDialog.show();
                 Spinner spinner = (Spinner) view.findViewById(R.id.sp_cost_type);
                 loadDataToSpinner(spinner, alertDialog);

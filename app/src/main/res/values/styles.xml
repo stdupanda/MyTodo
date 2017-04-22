@@ -48,4 +48,12 @@
         <item name="android:button">@drawable/selector_cb_star32</item>
         <item name="android:layout_marginRight">0dp</item>
     </style>
+
+    <style name="MyLauncherTheme" parent="android:Theme">
+        <!--<item name="android:windowBackground">@layout/splash</item>-->
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

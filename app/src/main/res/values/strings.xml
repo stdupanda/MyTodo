@@ -1,7 +1,7 @@
 <resources>
     <string name="place_holder">%s</string>
     <string name="app_name">待办管家</string>
-    <string name="help_content">待办小管家</string>
+    <string name="help_content">待办小管家\n番茄钟+日常支出记账+待办事项记录</string>
     <string name="app_ver">当前版本%s</string>
     <string name="setting">设置</string>
     <string name="help">帮助</string>
@@ -49,7 +49,7 @@
     <string name="export_data">导出数据</string>
     <string name="start_view">初始界面：</string>
     <string name="money">记账</string>
-    <string name="insert_cost">请输入消费金额</string>
+    <string name="insert_cost">请输入消费金额（取整）</string>
     <string name="add_cost">记一笔</string>
     <string name="str_title_cost">支出类别+金额</string>
     <string name="str_date_cost">详细说明+日期</string>
@@ -64,4 +64,5 @@
     <string name="please_insert_cost_type_name">请输入消费类别名</string>
     <string name="str_cost_type">此处显示消费类型</string>
     <string name="del_cost_type_ok">删除成功！</string>
+    <string name="insert_cost_date">请设置日期</string>
 </resources>

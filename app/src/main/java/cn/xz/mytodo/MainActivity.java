@@ -3,6 +3,7 @@ package cn.xz.mytodo;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -73,7 +74,9 @@ public class MainActivity extends FragmentActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        SystemClock.sleep(1000);
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);// 启动完成后修改为默认theme 禁用掉初始化时的theme
         setContentView(R.layout.activity_main);
         sp = getSharedPreferences(IConst.SP_FILE_NAME, MODE_PRIVATE);
 
@@ -191,7 +194,7 @@ public class MainActivity extends FragmentActivity
         return super.onKeyDown(keyCode, event);
     }
 
-    private void goHome(){
+    private void goHome() {
         Intent backHome = new Intent(Intent.ACTION_MAIN);
         backHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         backHome.addCategory(Intent.CATEGORY_HOME);
