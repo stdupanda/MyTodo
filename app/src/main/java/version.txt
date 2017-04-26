@@ -59,6 +59,11 @@ Version Code:9
 解决待办编辑界面点击日期后对话框永远为当前日期的bug
 新增记账界面支持自定义日期
 
->2016-xx-xx版本
+>2017-04-26版本
+Version Name:1.2.7
+Version Code:10
+顶部增加扫码二维码入口
+
+>2017-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

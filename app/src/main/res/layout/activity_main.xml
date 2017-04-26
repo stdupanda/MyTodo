@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/ly_top_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -11,15 +12,23 @@
 
         <TextView
             android:id="@+id/tv_top"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="@string/title_bar"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_scan"
+            android:padding="8dp"
+            android:layout_weight="0"
+            android:src="@drawable/scan"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/radio_group"

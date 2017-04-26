@@ -2,8 +2,8 @@ package cn.xz.mytodo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -11,9 +11,15 @@ import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.xz.mytodo.common.IConst;
 import cn.xz.mytodo.fragment.MyFragmentPagerAdapter;
 import cn.xz.mytodo.util.MLog;
@@ -22,6 +28,7 @@ import cn.xz.mytodo.util.MToast;
 public class MainActivity extends FragmentActivity
         implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
 
+    public static final int REQUEST_CODE = 123;
     //计数是从零开始！
     /**
      * 番茄钟
@@ -63,6 +70,44 @@ public class MainActivity extends FragmentActivity
     @BindView(R.id.rb_more)
     RadioButton rbMore;
 
+    @OnClick(R.id.iv_scan)
+    void doScan() {
+        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**
+         * 处理二维码扫描结果
+         */
+        if (requestCode == REQUEST_CODE) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE)
+                        == CodeUtils.RESULT_SUCCESS) {
+                    String result =
+                            bundle.getString(CodeUtils.RESULT_STRING);
+                    //用默认浏览器打开扫描得到的地址
+                    Intent intent = new Intent();
+                    intent.setAction("android.intent.action.VIEW");
+                    Uri content_url = Uri.parse(result.toString());
+                    intent.setData(content_url);
+                    startActivity(intent);
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE)
+                        == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(MainActivity.this,
+                            "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
     /*private <T extends View> T bindView(int viewId) {
         try {
             return (T) findViewById(viewId);
@@ -83,6 +128,8 @@ public class MainActivity extends FragmentActivity
         ButterKnife.bind(this);
 
         radioGroup.setOnCheckedChangeListener(this);
+
+        ZXingLibrary.initDisplayOpinion(this);
 
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         MLog.log(supportFragmentManager);

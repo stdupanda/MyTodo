@@ -8,8 +8,8 @@ android {
         applicationId "cn.xz.mytodo"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 9
-        versionName '1.2.6'
+        versionCode 10
+        versionName '1.2.7'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -44,7 +44,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
     compile 'com.jakewharton:butterknife:8.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'cn.yipianfengye.android:zxing-library:2.1'
 }
