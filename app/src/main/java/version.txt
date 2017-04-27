@@ -64,6 +64,13 @@ Version Name:1.2.7
 Version Code:10
 顶部增加扫码二维码入口
 
+>2017-04-27版本
+Version Name:1.2.8
+Version Code:11
+调整扫描二维码界面样式
+调整顶部扫码二维码按钮样式
+
+
 >2017-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

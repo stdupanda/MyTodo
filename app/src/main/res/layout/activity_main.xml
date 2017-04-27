@@ -22,7 +22,8 @@
 
         <ImageView
             android:id="@+id/iv_scan"
-            android:padding="8dp"
+            android:background="@drawable/selector_tv_ok"
+            android:padding="10dp"
             android:layout_weight="0"
             android:src="@drawable/scan"
             android:layout_width="48dp"

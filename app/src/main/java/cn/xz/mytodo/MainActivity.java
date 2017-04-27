@@ -70,9 +70,9 @@ public class MainActivity extends FragmentActivity
     @BindView(R.id.rb_more)
     RadioButton rbMore;
 
-    @OnClick(R.id.iv_scan)
-    void doScan() {
-        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+    @OnClick(R.id.iv_scan) void doScan() {
+//        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);// default scan view
+        Intent intent = new Intent(MainActivity.this, ScanActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
@@ -89,20 +89,17 @@ public class MainActivity extends FragmentActivity
                 if (bundle == null) {
                     return;
                 }
-                if (bundle.getInt(CodeUtils.RESULT_TYPE)
-                        == CodeUtils.RESULT_SUCCESS) {
-                    String result =
-                            bundle.getString(CodeUtils.RESULT_STRING);
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
                     //用默认浏览器打开扫描得到的地址
                     Intent intent = new Intent();
                     intent.setAction("android.intent.action.VIEW");
-                    Uri content_url = Uri.parse(result.toString());
+                    Uri content_url = Uri.parse(result);
                     intent.setData(content_url);
                     startActivity(intent);
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE)
                         == CodeUtils.RESULT_FAILED) {
-                    Toast.makeText(MainActivity.this,
-                            "解析二维码失败", Toast.LENGTH_LONG).show();
+                    MToast.Show(this, "解析二维码失败");
                 }
             }
         }
@@ -129,6 +126,7 @@ public class MainActivity extends FragmentActivity
 
         radioGroup.setOnCheckedChangeListener(this);
 
+        // init custom_scan_layout
         ZXingLibrary.initDisplayOpinion(this);
 
         FragmentManager supportFragmentManager = getSupportFragmentManager();
