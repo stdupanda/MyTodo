@@ -223,23 +223,23 @@ public class TodoFragment extends Fragment
     }
 
     //ViewHolder静态类
-    static class ViewHolderTodo {
-        public Long todoId;
-        public TextView tvTitle;
-        public TextView tvDesc;
-        public CheckBox cbIfDone;
-        public CheckBox cbIfStar;
-        public LinearLayout layout;
+    private static class ViewHolderTodo {
+        Long todoId;
+        TextView tvTitle;
+        TextView tvDesc;
+        CheckBox cbIfDone;
+        CheckBox cbIfStar;
+        LinearLayout layout;
     }
 
     //ViewHolder静态类
-    static class ViewHolderButton {
-        public Long btnId;
-        public TextView tvText;
-        public LinearLayout layout;
+    private static class ViewHolderButton {
+        Long btnId;
+        TextView tvText;
+        LinearLayout layout;
     }
 
-    public class TodoListAdapter extends BaseAdapter {
+    private class TodoListAdapter extends BaseAdapter {
 
         /**
          * 返回多少个不同的布局<p>目前是两种，一种是lv_todo，一种是lv_todo_btn</p>

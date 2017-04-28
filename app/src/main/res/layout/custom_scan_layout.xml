@@ -20,7 +20,7 @@
         app:inner_margintop="150dp"
         app:inner_scan_bitmap="@drawable/scan_light"
         app:inner_scan_iscircle="true"
-        app:inner_scan_speed="20"
+        app:inner_scan_speed="30"
         app:inner_width="300dp" />
 
 </FrameLayout>

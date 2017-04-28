@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
+
+import cn.xz.mytodo.util.MLog;
 
 /**
  * 自定义二维码扫描界面<br/>
@@ -26,6 +30,14 @@ public class ScanActivity extends FragmentActivity {
         captureFragment = new CaptureFragment();
         // 为二维码扫描界面设置定制化界面
         CodeUtils.setFragmentArgs(captureFragment, R.layout.custom_scan_layout);
+//        ViewfinderView view = (ViewfinderView) captureFragment.getActivity().findViewById(R.id.viewfinder_view);
+//        MLog.log("----------------" + view);
+//        ViewGroup.LayoutParams params = view.getLayoutParams();
+//        DisplayMetrics dm = getResources().getDisplayMetrics();
+//        int size = (int) (dm.widthPixels * (0.8));
+//        params.height = size;
+//        params.width = size;
+//        view.setLayoutParams(params);
         captureFragment.setAnalyzeCallback(analyzeCallback);
 
         //替换我们的扫描控件
