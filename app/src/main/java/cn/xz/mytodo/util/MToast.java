@@ -13,10 +13,14 @@ public class MToast {
     private static Toast toast;
 
     public static void Show(Context context, String tvString) {
-        Show(context, tvString, null);
+        Show(context, tvString, null, Toast.LENGTH_SHORT);
     }
 
-    public static void Show(Context context, String tvString, ViewGroup root) {
+    public static void ShowLong(Context context, String tvString) {
+        Show(context, tvString, null, Toast.LENGTH_LONG);
+    }
+
+    private static void Show(Context context, String tvString, ViewGroup root, int duration) {
         if (null == toast) {
             toast = new Toast(context);
         }
@@ -24,9 +28,9 @@ public class MToast {
         TextView tv = (TextView) view.findViewById(R.id.text);
 
         tv.setText(tvString);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setDuration(duration);
         toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
 }

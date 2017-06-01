@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -58,6 +60,18 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustUnspecified|stateHidden" />
         <activity android:name=".ScanActivity" />
+
+        <receiver android:name=".service.MyReceiver">
+            <intent-filter android:priority="2147483647"><!--优先级加最高-->
+                <!-- 系统启动完成后会调用 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- 解锁完成后会调用 -->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <!-- 监听情景切换 -->
+                <action android:name="android.media.RINGER_MODE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".service.KeepAliveService" />
     </application>
 
 </manifest>

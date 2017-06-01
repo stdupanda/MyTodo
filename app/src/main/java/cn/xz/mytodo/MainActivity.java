@@ -91,6 +91,7 @@ public class MainActivity extends FragmentActivity
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    MToast.ShowLong(getApplicationContext(), result);
                     //用默认浏览器打开扫描得到的地址
                     Intent intent = new Intent();
                     intent.setAction("android.intent.action.VIEW");

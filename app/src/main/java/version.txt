@@ -75,6 +75,18 @@ Version Name:1.2.9
 Version Code:12
 调整显示隐藏按钮一行的高度
 
+>2017-05-02版本
+Version Name:1.2.10
+Version Code:13
+广播接收启动service
+
+>2017-06-01版本
+Version Name:1.2.11
+Version Code:14
+移除 support 依赖
+调整 toast 位置
+扫码二维码后toast 提示内容
+
 >2017-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

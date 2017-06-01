@@ -65,4 +65,5 @@
     <string name="str_cost_type">此处显示消费类型</string>
     <string name="del_cost_type_ok">删除成功！</string>
     <string name="insert_cost_date">请设置日期</string>
+    <string name="scan">扫一扫</string>
 </resources>
