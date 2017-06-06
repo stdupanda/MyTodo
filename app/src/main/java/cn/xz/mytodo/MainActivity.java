@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -92,6 +93,10 @@ public class MainActivity extends FragmentActivity
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
                     MToast.ShowLong(getApplicationContext(), result);
+                    // 检测 url 是否合法
+                    if (!TextUtils.isEmpty(result) && !result.startsWith("http")) {
+                        return;
+                    }
                     //用默认浏览器打开扫描得到的地址
                     Intent intent = new Intent();
                     intent.setAction("android.intent.action.VIEW");
@@ -232,6 +237,7 @@ public class MainActivity extends FragmentActivity
             } else {
                 //finish();
                 //System.exit(0);
+                MToast.cancel(this);
                 goHome();
 
             }

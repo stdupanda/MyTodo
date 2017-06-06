@@ -154,7 +154,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                         getString(R.string.app_ver,
                                 "\n版本:" + MVersion.getAppVersionName(getActivity())))
                 .setPositiveButton("确定", null)
-                .setCancelable(false)
+                .setCancelable(true)
                 .show();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 .setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
@@ -165,7 +165,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         AlertDialog dialog = builder.setTitle("帮助")
                 .setMessage(getActivity().getString(R.string.help_content))
                 .setPositiveButton("确定", null)
-                .setCancelable(false)
+                .setCancelable(true)
                 .show();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 .setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));

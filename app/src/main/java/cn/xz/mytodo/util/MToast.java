@@ -33,4 +33,8 @@ public class MToast {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
+
+    public static void cancel(Context context){
+        toast.cancel();
+    }
 }

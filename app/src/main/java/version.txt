@@ -87,6 +87,12 @@ Version Code:14
 调整 toast 位置
 扫码二维码后toast 提示内容
 
+>2017-06-06版本
+Version Name:1.2.12
+Version Code:15
+修复扫码二维码对于非网址时异常的问题
+顶部导航栏标题靠左
+
 >2017-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x
