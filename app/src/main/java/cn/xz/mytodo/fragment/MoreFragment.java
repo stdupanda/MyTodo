@@ -47,6 +47,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     TextView tvAbout;
     @BindView(R.id.tv_frg_more_exp)
     TextView tvExp;
+    @BindView(R.id.tv_frg_more_imp)
+    TextView tvImp;
     @BindView(R.id.tv_frg_more_setting)
     TextView tvSetting;
     @BindView(R.id.tv_frg_more_help)
@@ -71,6 +73,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
         tvAbout.setOnClickListener(this);
         tvExp.setOnClickListener(this);
+        tvImp.setOnClickListener(this);
         tvSetting.setOnClickListener(this);
         tvHelp.setOnClickListener(this);
         tvExit.setOnClickListener(this);
@@ -98,6 +101,15 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             }
             case R.id.tv_frg_more_exp: {
                 showExpDialog();
+                break;
+            }
+            case R.id.tv_frg_more_imp: {
+                try {
+                    doImp();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    MToast.Show(getActivity(), e.getMessage());
+                }
                 break;
             }
             case R.id.tv_frg_more_help: {
@@ -145,6 +157,34 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 .show();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 .setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
+    }
+
+    private void doImp() throws IOException {
+        MToast.Show(getActivity(), "导出数据成功！");
+        // 复制根路径下的todo.db到/data/本app路径中
+        File dbFile = getActivity().getApplicationContext().getDatabasePath("todo.db");
+        String path = dbFile.getPath();
+//                + "data/" + getActivity().getApplicationContext().getPackageName()
+//                + "/databases/tod o.db";
+        if (dbFile.exists())//删除已经存在的
+            dbFile.deleteOnExit();
+        //创建新的文件
+        if (!dbFile.exists()) {
+            dbFile.createNewFile();
+        }
+
+        InputStream  in = new FileInputStream(
+                Environment.getExternalStorageDirectory().getAbsolutePath() + "/todo.db");
+        FileOutputStream fos = new FileOutputStream(dbFile);
+        int length;
+        byte[] buf = new byte[1024];
+        while ((length = in.read(buf)) != -1) {
+            fos.write(buf, 0, length);
+        }
+        fos.flush();
+        fos.close();
+        in.close();
+        MToast.Show(getActivity(), "ok");
     }
 
     private void showAboutDialog() {
@@ -259,7 +299,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         configDialog.show();
     }
 
-    private void goCostTypeActivity(){
+    private void goCostTypeActivity() {
         Intent intent = new Intent();
         intent.setClass(getActivity(), CostTypeActivity.class);
         Bundle bundle = new Bundle();

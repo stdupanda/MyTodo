@@ -1,20 +1,22 @@
 package cn.xz.mytodo;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
@@ -71,7 +73,15 @@ public class MainActivity extends FragmentActivity
     @BindView(R.id.rb_more)
     RadioButton rbMore;
 
-    @OnClick(R.id.iv_scan) void doScan() {
+    @OnClick(R.id.iv_scan)
+    void doScan() {
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) ||
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+            MToast.ShowLong(this, getString(R.string.place_holder, "请允许app权限请求！"));
+            //如果没有授权，则请求授权
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            return;
+        }
 //        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);// default scan view
         Intent intent = new Intent(MainActivity.this, ScanActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
@@ -80,7 +90,7 @@ public class MainActivity extends FragmentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /**
+        /*
          * 处理二维码扫描结果
          */
         if (requestCode == REQUEST_CODE) {

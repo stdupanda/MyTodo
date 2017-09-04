@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "cn.xz.mytodo"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 15
-        versionName '1.2.12'
+        versionCode 16
+        versionName '1.2.13'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

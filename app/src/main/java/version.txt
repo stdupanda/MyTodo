@@ -93,6 +93,12 @@ Version Code:15
 修复扫码二维码对于非网址时异常的问题
 顶部导航栏标题靠左
 
+>2017-09-04版本
+Version Name:1.2.13
+Version Code:16
+支持安卓7.1动摄像头权限的态权限申请
+“更多”界面增加导入db选项，可导入内部存储介质根路径的todo.db文件到/data数据库文件中（直接替换todo.db）
+
 >2017-xx-xx版本
 Version Name:x.x.x.x
 Version Code:x

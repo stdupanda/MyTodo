@@ -47,6 +47,7 @@
     <string name="add_ok">添加成功！</string>
     <string name="edit_ok">编辑成功！</string>
     <string name="export_data">导出数据</string>
+    <string name="import_data">导入数据</string>
     <string name="start_view">初始界面：</string>
     <string name="money">记账</string>
     <string name="insert_cost">请输入消费金额（取整）</string>
